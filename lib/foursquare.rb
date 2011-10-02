@@ -3,7 +3,7 @@ require 'httparty'
 require 'hashie'
 require 'oauth'
 
-Hash.send :include, Hashie::HashExtensions
+Hash.send :include, ::Hashie::HashExtensions
 
 
 
@@ -98,7 +98,7 @@ module Foursquare
     end
     
     def api(method_symbol, params = {})
-      Hashie::Mash.new(method_missing(method_symbol, params))
+      ::Hashie::Mash.new(method_missing(method_symbol, params))
     end
     
     def api_url(method_name, options = nil)
@@ -113,7 +113,7 @@ module Foursquare
     
     def parse_response(response)
       raise_errors(response)
-      Crack::JSON.parse(response.body)
+      ::Crack::JSON.parse(response.body)
     end
     
     def to_query_params(options)
